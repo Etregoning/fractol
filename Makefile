@@ -6,14 +6,14 @@
 #    By: etregoni <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 14:58:27 by etregoni          #+#    #+#              #
-#    Updated: 2017/08/17 16:08:25 by etregoni         ###   ########.fr        #
+#    Updated: 2017/08/23 14:18:54 by etregoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = fractol
 CFLAGS = -Wall -Werror -Wextra -g
 
-SRC_FILES = main.c parse_xy.c parse_z.c environment.c slope.c draw.c rotate_color.c
+SRC_FILES = main.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 SRC_DIR = ./src/
