@@ -18,6 +18,7 @@
 # include "keys.h"
 # include <math.h>
 # include <stdio.h>
+# define WHITE 0x00FFFFFF
 
 typedef struct s_fractal
 {
@@ -38,6 +39,8 @@ typedef	struct	s_env
 	int					width;
 	int					height;
 	int					max_iter;
+	double			x_offset;
+	double			y_offset;
 	t_fractal		*fractal;
 	int					(*fractal_choice)(struct s_env *env, double x, double y);
 }							t_env;
@@ -46,6 +49,7 @@ t_env	*make_environment(void *mlx);
 void	create_image(t_env *env);
 void	redraw(t_env *env);
 int	loop_hook(t_env *env);
+void	put_pixel_to_img(t_env *env, int x, int y, int color);
 int	mandelbrot(t_env *env, double re, double im);
 int	julia(t_env *env, double x, double y);
 
