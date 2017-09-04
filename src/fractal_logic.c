@@ -19,8 +19,8 @@ int	mandelbrot(t_env *env, double re, double im)
 	double	y;
 	int			i;
 
-	re = (4.0 * re / env->width - 2.0) + (env->x_offset / env->width);
-	im = (4.0 * im / env->height - 2.0) + (env->y_offset / env->height);
+	re = (4.0 * re / env->width - 2.0);
+	im = (4.0 * im / env->height - 2.0);
 
 	x = 0;
 	y = 0;
@@ -37,6 +37,9 @@ int	mandelbrot(t_env *env, double re, double im)
 
 int	julia(t_env *env, double x, double y)
 {
+	env = 0;
+	x = 0;
+	y = 0;
 	return (0);
 }
 

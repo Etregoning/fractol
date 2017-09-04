@@ -22,8 +22,8 @@ void	redraw(t_env *env)
 	else
 		// set function pointer to third choice
 		exit (0);
-	// generate image
-	// use generated image
+	draw_fractal(env);
+	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 }
 
 void	setup_environment(t_env *env)
@@ -39,7 +39,7 @@ t_env	*make_environment(void *mlx)
 	t_env *env;
 
 	env = (t_env*)malloc(sizeof(t_env));
-	env->fractal = (t_fractal*)malloc(sizeof(t_fractal));
 	setup_environment(env);
+	env->mlx = mlx;
 	return (env);
 }

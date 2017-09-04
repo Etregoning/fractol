@@ -12,13 +12,6 @@
 
 #include "fractol.h"
 
-int	expose_hook(t_env *env)
-{
-	if (env->expose == 0)
-		redraw(env);
-	return (0);
-}
-
 int	esc_hook(t_env *env)
 {
 	mlx_destroy_window(env->mlx, env->win);
@@ -30,4 +23,5 @@ int	loop_hook(t_env *env)
 {
 	if (env->expose)
 		redraw(env);
+	return (0);
 }
