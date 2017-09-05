@@ -37,6 +37,7 @@ int	main(int ac, char **av)
 		usage();
 	create_image(env);
 	env->win = mlx_new_window(mlx, env->width, env->height, "Fractal Viewer");
+	set_hooks(env);
 	mlx_loop_hook(mlx, loop_hook, env);
 	mlx_loop(mlx);
 }

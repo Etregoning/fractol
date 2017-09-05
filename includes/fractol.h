@@ -46,5 +46,7 @@ void	put_pixel_to_img(t_env *env, int x, int y, int color);
 int	mandelbrot(t_env *env, double re, double im);
 int	julia(t_env *env, double x, double y);
 void	draw_fractal(t_env *env);
+void	set_hooks(t_env *env);
+int	esc_hook(t_env *env);
 
 #endif

@@ -34,6 +34,13 @@ void	setup_environment(t_env *env)
 	env->max_iter = 64;
 }
 
+void	set_hooks(t_env *env)
+{
+	mlx_do_key_autorepeatoff(env->mlx);
+
+	mlx_hook(env->win, 13, 0, esc_hook, env);
+}
+
 t_env	*make_environment(void *mlx)
 {
 	t_env *env;

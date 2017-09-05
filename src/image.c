@@ -20,6 +20,8 @@ void	put_pixel_to_img(t_env *env, int x, int y, int color)
 	{
 		i = (x * (env->bits_per_pixel / 8)) + (y * env->size_line);
 		env->img_addr[i] = color;
+		env->img_addr[++i] = color >> 8;
+		env->img_addr[++i] = color >> 16;
 	}
 }
 
