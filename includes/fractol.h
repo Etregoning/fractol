@@ -20,6 +20,13 @@
 # include <stdio.h>
 # define WHITE 0x00FFFFFF
 
+typedef struct	s_fractal
+{
+	long double x;
+	long double y;
+	long double re;
+	long double im;
+}							t_fractal;
 
 typedef	struct	s_env
 {
@@ -35,6 +42,7 @@ typedef	struct	s_env
 	int					width;
 	int					height;
 	int					max_iter;
+	t_fractal		*fractal;
 	int					(*fractal_choice)(struct s_env *env, double x, double y);
 }							t_env;
 

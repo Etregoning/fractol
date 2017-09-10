@@ -46,6 +46,7 @@ t_env	*make_environment(void *mlx)
 	t_env *env;
 
 	env = (t_env*)malloc(sizeof(t_env));
+	env->fractal = (t_fractal*)malloc(sizeof(t_fractal));
 	setup_environment(env);
 	env->mlx = mlx;
 	return (env);

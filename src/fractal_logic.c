@@ -37,10 +37,25 @@ int	mandelbrot(t_env *env, double re, double im)
 
 int	julia(t_env *env, double x, double y)
 {
-	env = 0;
-	x = 0;
-	y = 0;
-	return (0);
+	long double x_new;
+	long double re;
+	long double im;
+	int	i;
+
+	x = (4.0 * x / env->width - 2.0);
+	y = (4.0 * y / env->height - 2.0);
+	i = 0;
+	re = 0;
+	im = 0;
+
+	while (x * x + y * y < 4.0 && i < env->max_iter)
+	{
+		x_new = x * x - y * y + re;
+		y = 2 * x * y + im;
+		x = x_new;
+		i++;
+	}
+	return (i);
 }
 
 void	draw_fractal(t_env *env)
@@ -57,7 +72,7 @@ void	draw_fractal(t_env *env)
 		{
 			f = env->fractal_choice(env, x, y);
 			if (f < env->max_iter)
-				put_pixel_to_img(env, x, y, f * 10000);
+				put_pixel_to_img(env, x, y, WHITE);
 			x++;
 		}
 		y++;
