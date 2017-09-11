@@ -42,6 +42,8 @@ typedef	struct	s_env
 	int					width;
 	int					height;
 	int					max_iter;
+	double			mouse_x;
+	double			mouse_y;
 	t_fractal		*fractal;
 	int					(*fractal_choice)(struct s_env *env, double x, double y);
 }							t_env;
@@ -55,6 +57,8 @@ int	mandelbrot(t_env *env, double re, double im);
 int	julia(t_env *env, double x, double y);
 void	draw_fractal(t_env *env);
 void	set_hooks(t_env *env);
+int	pressed_hooks(int keycode, t_env *env);
+int	motion_hook(int x, int y, t_env *env);
 int	esc_hook(t_env *env);
 
 #endif

@@ -32,12 +32,15 @@ void	setup_environment(t_env *env)
 	env->width = 800;
 	env->height = 800;
 	env->max_iter = 64;
+	env->mouse_x = 0;
+	env->mouse_y = 0;
 }
 
 void	set_hooks(t_env *env)
 {
 	mlx_do_key_autorepeatoff(env->mlx);
-
+	mlx_hook(env->win, 2, 0, pressed_hooks, env);
+	mlx_hook(env->win, 6, 0, motion_hook, env);
 	mlx_hook(env->win, 13, 0, esc_hook, env);
 }
 

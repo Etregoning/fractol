@@ -13,7 +13,7 @@
 NAME = fractol
 CFLAGS = -Wall -Werror -Wextra -g
 
-SRC_FILES = main.c environment.c fractal_logic.c hooks.c image.c
+SRC_FILES = main.c environment.c fractal_logic.c hooks.c image.c mouse_hooks.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 SRC_DIR = ./src/
