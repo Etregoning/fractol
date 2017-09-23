@@ -14,8 +14,8 @@
 
 void usage(void)
 {
-	ft_error("Usage: ./fractol <fractal name>\n\n"
-						"Available fractals: Mandelbrot, Julia");
+	ft_error("Usage: ./fractol <fractal name>\n\nAvailable fractals: "
+						"mandelbrot, julia, julia_cubed, burning_ship, carpet");
 }
 
 int	main(int ac, char **av)
@@ -31,8 +31,12 @@ int	main(int ac, char **av)
 		env->arg = 1;
 	else if (ft_strcmp(av[1], "Julia") == 0 || ft_strcmp(av[1], "julia") == 0)
 		env->arg = 2;
-	else if (ft_strcmp(av[1], "Third") == 0 || ft_strcmp(av[1], "third") == 0)
+	else if (ft_strcmp(av[1], "Burning_Ship") == 0 || ft_strcmp(av[1], "burning_ship") == 0)
 		env->arg = 3;
+	else if (ft_strcmp(av[1], "Carpet") == 0 || ft_strcmp(av[1], "carpet") == 0)
+		env->arg = 4;
+	else if (ft_strcmp(av[1], "Julia_cubed") == 0 || ft_strcmp(av[1], "julia_cubed") == 0)
+		env->arg = 5;
 	else
 		usage();
 	create_image(env);

@@ -15,6 +15,8 @@
 
 # define KEY_UP 126
 # define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 # define KEY_SEMI 41
 # define KEY_PLUS 69
 # define KEY_MINUS 78
@@ -45,5 +47,15 @@
 # define KEY_X 7
 # define KEY_Y 16
 # define KEY_Z 6
+
+typedef struct s_keys
+{
+	int	up:1;
+	int	down:1;
+	int	left:1;
+	int	right:1;
+	int	plus:1;
+	int	minus:1;
+}			t_keys;
 
 #endif

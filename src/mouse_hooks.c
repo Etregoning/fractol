@@ -15,9 +15,58 @@
 int	motion_hook(int x, int y, t_env *env)
 {
 	env->mouse_x = x;
-	printf("mouse x = %d", x);
 	env->mouse_y = y;
-	printf("mouse y = %d\n", y);
+	env->julia_re = env->mouse_x * 4.0 / env->width - 2;
+	env->julia_im = env->mouse_y * 4.0 / env->height - 2;
 	env->expose = 1;
+	return (0);
+}
+
+void	change_iter(int button, t_env *env)
+{
+	if (button == 1)
+	{
+		if (env->max_iter <= 300)
+			env->max_iter += 4;
+	}
+	else if(button == 2)
+	{
+		if (env->max_iter >= 8)
+			env->max_iter -= 8;
+	}
+	ft_putstr("Iterations: ");
+	ft_putnbr(env->max_iter);
+	ft_putchar('\n');
+}
+
+int	mouse_press_hook(int button, int x, int y, t_env *env)
+{
+	if (button == 1 || button == 2)
+		change_iter(button, env);
+	if (button == 4)
+	{
+		x -= env->width / 2;
+		y -= env->height / 2;
+		env->zoom = (env->zoom + 1) * 1.1;
+		env->x_move += x / env->zoom / 1.5;
+		env->y_move += y / env->zoom / 1.5;
+	}
+	else if (button == 5)
+	{
+		if (env->zoom > 2)
+			env->zoom = (env->zoom - 1) / 1.1;
+		if (env->zoom > 4)
+			env->zoom = 1;
+	}
+	env->expose = 1;
+	return (0);
+}
+
+int	mouse_release_hook(int button, int x, int y, t_env *env)
+{
+	(void)button;
+	(void)env;
+	(void)x;
+	(void)y;
 	return (0);
 }

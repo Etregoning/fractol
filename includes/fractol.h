@@ -17,16 +17,9 @@
 # include "libft.h"
 # include "keys.h"
 # include <math.h>
+# include <pthread.h>
 # include <stdio.h>
-# define WHITE 0x00FFFFFF
-
-typedef struct	s_fractal
-{
-	long double x;
-	long double y;
-	long double re;
-	long double im;
-}							t_fractal;
+# define NUM_THREADS 16
 
 typedef	struct	s_env
 {
@@ -42,11 +35,24 @@ typedef	struct	s_env
 	int					width;
 	int					height;
 	int					max_iter;
+	int					zoom;
+	float				mov_speed;
 	double			mouse_x;
 	double			mouse_y;
-	t_fractal		*fractal;
+	double			x_move;
+	double			y_move;
+	long double	julia_re;
+	long double	julia_im;
+	t_keys			*key_pressed;
 	int					(*fractal_choice)(struct s_env *env, double x, double y);
 }							t_env;
+
+typedef struct s_thread
+{
+	t_env	*env;
+	int		count;
+	int		index;
+}				t_thread;
 
 t_env	*make_environment(void *mlx);
 void	create_image(t_env *env);
@@ -55,10 +61,20 @@ int	loop_hook(t_env *env);
 void	put_pixel_to_img(t_env *env, int x, int y, int color);
 int	mandelbrot(t_env *env, double re, double im);
 int	julia(t_env *env, double x, double y);
-void	draw_fractal(t_env *env);
+int	julia_cubed(t_env *env, double x, double y);
+int	burning_ship(t_env *env, double x, double y);
+int	carpet(t_env *env, double x, double y);
+void	draw_fractal(void *current_thread);
 void	set_hooks(t_env *env);
 int	pressed_hooks(int keycode, t_env *env);
+int	released_hook(int keycode, t_env *env);
 int	motion_hook(int x, int y, t_env *env);
-int	esc_hook(t_env *env);
+void	toggle_keys(int keycode, t_env *env, int toggle);
+int	mouse_press_hook(int button, int x, int y, t_env *env);
+int	mouse_release_hook(int button, int x, int y, t_env *env);
+int	exit_hook(t_env *env);
+void	change_mov_speed(t_env *env, int flag);
+void	hook_output(t_env *env, int flag);
+void	init_thread(t_env *env);
 
 #endif
