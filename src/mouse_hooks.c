@@ -26,7 +26,7 @@ void	change_iter(int button, t_env *env)
 {
 	if (button == 1)
 	{
-		if (env->max_iter <= 300)
+		if (env->max_iter <= 400)
 			env->max_iter += 4;
 	}
 	else if(button == 2)
@@ -50,13 +50,15 @@ int	mouse_press_hook(int button, int x, int y, t_env *env)
 		env->zoom = (env->zoom + 1) * 1.1;
 		env->x_move += x / env->zoom / 1.5;
 		env->y_move += y / env->zoom / 1.5;
+		printf("zoom: %f\n")
 	}
-	else if (button == 5)
+	else if (button == 5 && env->zoom > 1.0)
 	{
-		if (env->zoom > 2)
-			env->zoom = (env->zoom - 1) / 1.1;
-		if (env->zoom > 4)
-			env->zoom = 1;
+		env->x_move -= ((((double)x - 1000 / 2) / 1000 / 2)
+						/ env->zoom * 1.1) / 2;
+		env->y_move -= ((((double)y - 1000 / 2) / 1000 / 2)
+						/ env->zoom * 1.1) / 2;
+		env->zoom /= 1.1;
 	}
 	env->expose = 1;
 	return (0);

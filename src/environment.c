@@ -36,7 +36,7 @@ void	setup_environment(t_env *env)
 	env->expose = 1;
 	env->width = 800;
 	env->height = 800;
-	env->max_iter = 32;
+	env->max_iter = 80;
 	env->mouse_x = 0;
 	env->mouse_y = 0;
 	env->x_move =  0;

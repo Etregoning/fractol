@@ -54,6 +54,11 @@ typedef struct s_thread
 	int		index;
 }				t_thread;
 
+typedef union	u_colors
+{
+	unsigned int	channels[3];
+}								t_colors;
+
 t_env	*make_environment(void *mlx);
 void	create_image(t_env *env);
 void	redraw(t_env *env);
@@ -76,5 +81,6 @@ int	exit_hook(t_env *env);
 void	change_mov_speed(t_env *env, int flag);
 void	hook_output(t_env *env, int flag);
 void	init_thread(t_env *env);
+unsigned int	get_color(int i, double x, double y);
 
 #endif

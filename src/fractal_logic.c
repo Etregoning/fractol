@@ -98,24 +98,36 @@ void	draw_fractal(void *current_thread)
 {
 	int	x;
 	int	y;
-	int	f;
+	int	i;
 	t_env *env;
 	t_thread *thread;
 
 	thread = (t_thread*)current_thread;
 	env = thread->env;
-	f = 0;
+	i = 0;
 	y = (env->height / thread->count * (thread->index - 1)) - 1;
 	while (++y < env->height / thread->count * thread->index)
 	{
 		x = -1;
 		while (++x < env->width)
 		{
-			f = env->fractal_choice(env, x, y);
-			if (f < env->max_iter)
-				put_pixel_to_img(env, x, y, f * 10000);
+			i = env->fractal_choice(env, x, y);
+			if (env->fractal_choice == carpet)
+			{
+			if (i == 1)
+			{
+				put_pixel_to_img(env, x, y, 0xFF0000);//get_color(i, x, y));
+			}
 			else
 				put_pixel_to_img(env, x, y, 0);
-		}
+			}
+			else
+			{
+				if (i < env->max_iter)
+					put_pixel_to_img(env, x, y, get_color(i, x, y));
+				else
+					put_pixel_to_img(env, x, y, 0);
+				}
+			}
 	}
 }
